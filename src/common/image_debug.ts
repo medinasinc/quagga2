@@ -29,6 +29,7 @@ export default {
         ctx.strokeRect(pos.x, pos.y, size.x, size.y);
     },
     drawPath(path: Path, def: XYDefinition, ctx: CanvasRenderingContext2D, style: CanvasStyle): void {
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
         ctx.strokeStyle = style.color;
         ctx.fillStyle = style.color;
         ctx.lineWidth = style.lineWidth;

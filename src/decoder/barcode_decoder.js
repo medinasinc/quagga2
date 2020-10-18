@@ -56,7 +56,7 @@ export default {
         initConfig();
 
         function initCanvas() {
-            if (ENV.development && typeof document !== 'undefined') {
+            if (typeof document !== 'undefined') {
                 const $debug = document.querySelector('#debug.detection');
                 _canvas.dom.frequency = document.querySelector('canvas.frequency');
                 if (!_canvas.dom.frequency) {
@@ -185,14 +185,14 @@ export default {
             let i;
             const barcodeLine = Bresenham.getBarcodeLine(inputImageWrapper, line[0], line[1]);
 
-            if (ENV.development && config.debug.showFrequency) {
+            if (config.debug.showFrequency) {
                 ImageDebug.drawPath(line, { x: 'x', y: 'y' }, _canvas.ctx.overlay, { color: 'red', lineWidth: 3 });
                 Bresenham.debug.printFrequency(barcodeLine.line, _canvas.dom.frequency);
             }
 
             Bresenham.toBinaryLine(barcodeLine);
 
-            if (ENV.development && config.debug.showPattern) {
+            if (config.debug.showPattern) {
                 Bresenham.debug.printPattern(barcodeLine.line, _canvas.dom.pattern);
             }
 
@@ -270,10 +270,8 @@ export default {
             const ctx = _canvas.ctx.overlay;
             let result;
 
-            if (ENV.development) {
-                if (config.debug.drawBoundingBox && ctx) {
-                    ImageDebug.drawPath(box, { x: 0, y: 1 }, ctx, { color: 'blue', lineWidth: 2 });
-                }
+            if (config.debug.drawBoundingBox && ctx) {
+                ImageDebug.drawPath(box, { x: 0, y: 1 }, ctx, { color: 'blue', lineWidth: 2 });
             }
 
             line = getLine(box);
@@ -293,7 +291,7 @@ export default {
                 return null;
             }
 
-            if (ENV.development && result && config.debug.drawScanline && ctx) {
+            if (result && config.debug.drawScanline && ctx) {
                 ImageDebug.drawPath(line, { x: 'x', y: 'y' }, ctx, { color: 'red', lineWidth: 3 });
             }
 
